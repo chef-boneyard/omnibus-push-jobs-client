@@ -1,0 +1,13 @@
+*.gem
+.bundle
+vendor/bundle
+pkg/*
+.vagrant
+bin/*
+omnibus.rb
+files/msi/ChefClient-Config.wxi
+cookbooks
+vendor/cookbooks
+build_timestamp
+ldd.out
+jenkins/chef-solo
