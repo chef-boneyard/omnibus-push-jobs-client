@@ -39,8 +39,6 @@ IF NOT %ERRORLEVEL% == 0 (
 rem # install omnibus cookbook and dependencies
 call berks install --path=vendor/cookbooks
 
-call chef-solo -c .\jenkins\solo.rb -j .\jenkins\dna-windows.json -l debug || GOTO :error
-
 call copy /Y omnibus.rb.example.windows omnibus.rb || GOTO :error
 
 rem # we're guaranteed to have the correct ruby installed into C:\Ruby193 from chef-solo cookbooks
