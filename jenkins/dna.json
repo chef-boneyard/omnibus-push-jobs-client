@@ -1,7 +1,7 @@
 {
   "omnibus": {
     "build_user": "jenkins-node",
-    "install_dir": "/opt/opscode-push-jobs-server",
+    "install_dir": "/opt/opscode-push-jobs-client",
     "cache_dir": "/var/cache/omnibus"
   },
   "run_list": [

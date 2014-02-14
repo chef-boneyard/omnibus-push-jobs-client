@@ -18,7 +18,7 @@ $ bundle install --binstubs
 You create a platform-specific package using the `build project` command:
 
 ```shell
-$ bin/omnibus build project opscode-push-jobs-server
+$ bin/omnibus build project opscode-push-jobs-client
 ```
 
 The platform/architecture type of the package created will match the platform
@@ -132,4 +132,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
