@@ -35,8 +35,11 @@ rem # ensure the installed certificate authority is loaded
 set SSL_CERT_FILE=C:\Ruby193\ssl\certs\cacert.pem
 call bundle install || GOTO :error
 
-call bundle exec omnibus build project %omnibus_project%-windows || GOTO :error
-
+IF "%RELEASE_BUILD%"=="true" (
+  call bundle exec omnibus build project %omnibus_project%-windows --no-timestamp || GOTO :error
+) else
+  call bundle exec omnibus build project %omnibus_project%-windows || GOTO :error
+)
 GOTO :EOF
 
 :error
