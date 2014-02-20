@@ -60,7 +60,7 @@ fi
 cp omnibus.rb.example omnibus.rb
 
 # Aaand.. new ruby
-export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/bin:/opt/ruby1.9/bin:$PATH
 bundle install
 
 if [ "$RELEASE_BUILD" = "true" ]; then
