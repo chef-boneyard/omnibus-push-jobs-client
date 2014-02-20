@@ -46,37 +46,6 @@ then
   echo "$BUILD_TAG / $BUILD_ID" > build_timestamp
 fi
 
-mkdir -p jenkins/chef-solo/cache
-
-export PATH=/opt/ruby1.9/bin:/usr/local/bin:$PATH
-if ! exists chef-solo;
-then
-  sudo gem install chef --no-ri --no-rdoc
-fi
-
-# ensure bundler is installed
-if ! exists bundle;
-then
-  sudo gem install bundler --no-ri --no-rdoc
-fi
-
-# ensure berkshelf is installed
-if ! exists berks;
-then
-  sudo gem install berkshelf --no-ri --no-rdoc
-fi
-
-# install omnibus cookbook and dependencies
-berks install --path=vendor/cookbooks
-
-if [ -f "/etc/release" ] && [ -n "$(cat /etc/release | grep -i solaris)" ]; then
-  dna=$(pwd)/jenkins/dna-solaris2.json
-else
-  dna=$(pwd)/jenkins/dna.json
-fi
-# Omnibus build server prep tasks, including build ruby
-sudo -i env PATH=$PATH chef-solo -c $(pwd)/jenkins/solo.rb -j $dna -l debug
-
 if [ "$CLEAN" = "true" ]; then
   sudo rm -rf "/opt/${project_name}" || true
   sudo mkdir -p "/opt/${project_name}"
