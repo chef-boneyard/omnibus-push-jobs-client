@@ -20,24 +20,11 @@ rem # referenced below
 set BUILD_WORKSPACE=c:\opscode_pushy_build
 set OMNIBUS_RUBY_CACHE=c:\omnibus-ruby-cache-pushy
 
-rem # IF NOT EXIST jenkins\chef-solo\cache mkdir jenkins\chef-solo\cache
-
 IF "%CLEAN%"=="true" (
   rmdir /Q /S %BUILD_WORKSPACE%
   rmdir /Q /S %OMNIBUS_RUBY_CACHE%
   rmdir /Q /S .\pkg
 )
-
-call bundle install || GOTO :error
-
-rem # ensure berkshelf is installed
-where /q berks
-IF NOT %ERRORLEVEL% == 0 (
-  call gem install berkshelf --no-ri --no-rdoc
-)
-
-rem # install omnibus cookbook and dependencies
-call berks install --path=vendor/cookbooks
 
 call copy /Y omnibus.rb.example.windows omnibus.rb || GOTO :error
 
