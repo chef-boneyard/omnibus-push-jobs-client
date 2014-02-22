@@ -37,7 +37,7 @@ call bundle install || GOTO :error
 
 IF "%RELEASE_BUILD%"=="true" (
   call bundle exec omnibus build project %omnibus_project%-windows --no-timestamp || GOTO :error
-) else
+) else (
   call bundle exec omnibus build project %omnibus_project%-windows || GOTO :error
 )
 GOTO :EOF
