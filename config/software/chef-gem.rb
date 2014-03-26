@@ -22,7 +22,7 @@
 # are tracked differently.
 
 name "chef-gem"
-version "11.2.0"
+version "11.10.4"
 
 dependency "ruby"
 dependency "rubygems"
