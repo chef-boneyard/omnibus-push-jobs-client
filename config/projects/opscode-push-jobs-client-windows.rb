@@ -16,18 +16,13 @@
 #
 
 name       "opscode-push-jobs-client-windows"
-maintainer "Opscode, Inc."
-homepage   "http://www.opscode.com"
+maintainer "CHEF, Inc."
+homepage   "http://www.getchef.com"
 
 package_name    "opscode-push-jobs-client"
 install_path    "c:\\opscode_pushy_build"
 build_version   Omnibus::BuildVersion.new.semver
 build_iteration 1
-
-# Hacky but allows us to set the embedded chef version that is installed.
-# Once omnibus-ruby supports proper software definition version overrides
-# (either externally or at the project level) this can go away.
-ENV['CHEF_GIT_REV'] ||= "master"
 
 dependency "preparation"
 dependency "ruby-windows"
@@ -37,3 +32,6 @@ dependency "libzmq-windows"
 dependency "opscode-pushy-client-windows"
 dependency "opscode-push-jobs-client-msi"
 dependency "version-manifest"
+
+exclude '\.git*'
+exclude 'bundler\/git'
