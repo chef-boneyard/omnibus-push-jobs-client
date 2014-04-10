@@ -1,5 +1,7 @@
 *.gem
 .bundle
+.kitchen/
+.kitchen.local.yml
 vendor/bundle
 pkg/*
 .vagrant
@@ -7,6 +9,7 @@ bin/*
 omnibus.rb
 files/msi/ChefClient-Config.wxi
 cookbooks
+files/**/cache/
 vendor/cookbooks
 build_timestamp
 ldd.out

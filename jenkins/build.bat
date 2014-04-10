@@ -33,6 +33,10 @@ rem # bundle install from here now too
 set PATH=C:\Ruby193\bin;%PATH%
 rem # ensure the installed certificate authority is loaded
 set SSL_CERT_FILE=C:\Ruby193\ssl\certs\cacert.pem
+
+rem # add dev kit to PATH
+call c:\opscode_live\chef\embedded\devkitvars.bat
+
 call bundle install || GOTO :error
 
 IF "%RELEASE_BUILD%"=="true" (
