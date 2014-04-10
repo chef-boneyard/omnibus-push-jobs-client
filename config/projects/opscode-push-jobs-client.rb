@@ -26,6 +26,7 @@ build_iteration 1
 
 dependency "preparation"
 dependency "chef-gem"
+dependency "bundler"
 dependency "opscode-pushy-client"
 dependency "version-manifest"
 
