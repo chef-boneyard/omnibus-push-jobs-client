@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Install omnibus software
-gem 'omnibus', github: 'opscode/omnibus-ruby', :branch => 'master'
+gem 'omnibus', github: 'opscode/omnibus-ruby', :branch => 'sf/fix-s3-cache'
 gem 'omnibus-software', github: 'opscode/omnibus-software', :branch => 'master'
 
 # Use Test Kitchen with Vagrant for convering the build environment
