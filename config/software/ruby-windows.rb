@@ -16,13 +16,19 @@
 #
 
 name "ruby-windows"
-default_version "1.9.3-p286"
+default_version "1.9.3-p545"
 
 relative_path "ruby-#{version}-i386-mingw32"
 
+version "1.9.3-p545" do
+  source :url => "http://dl.bintray.com/oneclick/rubyinstaller/ruby-1.9.3-p545-i386-mingw32.7z?direct",
+         :md5 => "8e7f07256c86bfd6fc73fbcc13db4b09"
+end
 
-source :url => "http://rubyforge.org/frs/download.php/76528/ruby-#{version}-i386-mingw32.7z",
-       :md5 => "8ba0d2203590dbf8e9d59d9d731c05d0"
+version "1.9.3-p286" do
+  source :url => "http://rubyforge.org/frs/download.php/76528/ruby-#{version}-i386-mingw32.7z",
+         :md5 => "8ba0d2203590dbf8e9d59d9d731c05d0"
+end
 
 build do
   # Robocopy's return code is 1 if it succesfully copies over the
