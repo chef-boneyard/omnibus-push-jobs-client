@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/opscode/omnibus-ruby.git
-  revision: 6934a4d9f56589403db5e385e877ce8109b4cb76
-  branch: master
+  revision: d56d05ba72c2ed02568a64164cb6a781419d23d4
+  branch: sf/fix-s3-cache
   specs:
     omnibus (3.0.0)
       chef-sugar (~> 1.2)
