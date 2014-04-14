@@ -7,7 +7,7 @@ driver:
     - ['../../..', '/home/vagrant/opscode-push-jobs-client']
 
 provisioner:
-  require_chef_omnibus: 11.10.4
+  require_chef_omnibus: 11.12.2
 
 platforms:
   - name: ubuntu-12.04
