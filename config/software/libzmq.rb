@@ -17,16 +17,16 @@
 
 # We use the version in util-linux, and only build the libuuid subdirectory
 name "libzmq"
-default_version "v2.1.11"
+default_version "v4.0.4"
 
 dependency "autoconf"
 dependency "automake"
 dependency "libtool"
 dependency "libuuid"
 
-source :git => "git://github.com/zeromq/zeromq2-x.git"
+source :git => "git://github.com/zeromq/zeromq4-x.git"
 
-relative_path "zeromq2-x"
+relative_path "zeromq4-x"
 
 build do
   env = {

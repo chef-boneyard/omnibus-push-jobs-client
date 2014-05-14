@@ -22,7 +22,7 @@ dependency "rubygems"
 dependency "bundler"
 dependency "libzmq"
 
-default_version "1.0.1"
+default_version "ma/use-ffi-rzmq"
 
 # TODO - use public GIT URL when repo made public
 source :git => "git@github.com:opscode/opscode-pushy-client.git"
