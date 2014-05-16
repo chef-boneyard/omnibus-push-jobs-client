@@ -29,6 +29,8 @@ dependency "chef-gem"
 dependency "bundler"
 dependency "opscode-pushy-client"
 dependency "version-manifest"
+dependency "libzmq"
+dependency "libffi"
 
 exclude '\.git*'
 exclude 'bundler\/git'

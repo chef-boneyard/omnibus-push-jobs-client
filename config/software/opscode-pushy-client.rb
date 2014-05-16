@@ -21,6 +21,7 @@ dependency "ruby"
 dependency "rubygems"
 dependency "bundler"
 dependency "libzmq"
+dependency "libffi"
 
 default_version "ma/use-ffi-rzmq"
 
@@ -60,13 +61,5 @@ build do
   gem ["install pkg/opscode-pushy-client*.gem",
       "-n #{install_dir}/bin",
       "--no-rdoc --no-ri"].join(" "), :env => env
-
-  auxiliary_gems = ["zmq"]
-
-  gem ["install",
-       auxiliary_gems.join(" "),
-       "-n #{install_dir}/bin",
-       "--no-rdoc --no-ri"].join(" "), :env => env
-
 
 end
