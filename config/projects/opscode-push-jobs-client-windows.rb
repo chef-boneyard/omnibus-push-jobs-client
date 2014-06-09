@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2012 Opscode, Inc.
+# Copyright:: Copyright (c) 2012-2014 Chef, Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -36,3 +36,41 @@ dependency "version-manifest"
 
 exclude '\.git*'
 exclude 'bundler\/git'
+
+
+resources_path File.join(files_path, "pushy_client")
+
+msi_parameters do
+  msi_parameters = { }
+  
+  # build_version looks something like this:
+  # dev builds => 11.14.0-alpha.1+20140501194641.git.94.561b564
+  # rel builds => 11.14.0.alpha.1 || 11.14.0
+  versions = build_version.split("-").first.split(".")
+  msi_parameters[:major_version] = versions[0]
+  msi_parameters[:minor_version] = versions[1]
+  msi_parameters[:micro_version] = versions[2]
+  msi_parameters[:build_version] = build_iteration
+
+  # Find path in which chef gem is installed to.
+  # Note that install_dir is something like: c:\\opscode\\chef
+  push_path_regex = "#{install_path.gsub(File::ALT_SEPARATOR, File::SEPARATOR)}/**/gems/opscode-pushy-client-[0-9]*"
+  push_gem_paths = Dir[push_path_regex].select{ |path| File.directory?(path) }
+  unless push_gem_paths.length == 1
+    raise "Expected one but found #{push_gem_paths.length} installation directories \
+      for chef gem using: #{push_path_regex}. Found paths: #{push_gem_paths.inspect}."
+  end
+  push_gem_path = push_gem_paths.first
+  # Convert the chef gem path to a relative path based on install_dir
+  # We are going to use this path in the startup command of chef
+  # service. So we need to change file seperators to make windows
+  # happy.
+  push_gem_path.gsub!(File::SEPARATOR, File::ALT_SEPARATOR)
+  push_gem_path.slice!(install_path.gsub(File::SEPARATOR, File::ALT_SEPARATOR) + File::ALT_SEPARATOR)
+  msi_parameters[:push_gem_path] = push_gem_path
+
+  # Upgrade code for Chef MSI
+  msi_parameters[:upgrade_code] = "D607A85C-BDFA-4F08-83ED-2ECB4DCD6BC5"
+
+  msi_parameters
+end

@@ -23,6 +23,8 @@ source :git => "git@github.com:opscode/opscode-pushy-client.git"
 
 relative_path "opscode-pushy-client"
 
+always_build (self.project.name == "opscode-pushy-client-windows")
+
 build do
   gem ["install",
        "zmq",
