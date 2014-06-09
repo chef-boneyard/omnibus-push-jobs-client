@@ -31,14 +31,13 @@ dependency "chef-gem-windows"
 dependency "bundler"
 dependency "libzmq-windows"
 dependency "opscode-pushy-client-windows"
-dependency "opscode-push-jobs-client-msi"
 dependency "version-manifest"
 
 exclude '\.git*'
 exclude 'bundler\/git'
 
 
-resources_path File.join(files_path, "pushy_client")
+resources_path File.join(files_path, "push-jobs-client")
 
 msi_parameters do
   msi_parameters = { }
