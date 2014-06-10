@@ -20,7 +20,7 @@
 
     <Media Id="1" Cabinet="PushyClient.cab" EmbedCab="yes" CompressionLevel="high" />
 
-    <!-- Major upgrade --> 
+    <!-- Major upgrade -->
     <Upgrade Id="$(var.UpgradeCode)">
       <UpgradeVersion OnlyDetect="yes" Minimum="$(var.VersionNumber)" IncludeMinimum="no" Property="NEWERVERSIONDETECTED" />
       <UpgradeVersion Minimum="0.0.0.0" IncludeMinimum="yes" Maximum="$(var.VersionNumber)" IncludeMaximum="no" Property="OLDERVERSIONBEINGUPGRADED" />
@@ -39,19 +39,19 @@
           </Component>
         </Directory>
         <Directory Id="INSTALLLOCATION" Name="opscode">
-          <Directory Id="PUSHYLOCATION" Name="pushy" >
+          <Directory Id="PROJECTLOCATION" Name="pushy" >
             <Directory Id="EMBEDDED" Name="embedded" >
               <Directory Id="EMBEDDEDBIN" Name="bin" >
                 <Component Id="PushyClientPath" Guid="{7F663F88-55A2-4E20-82BF-8BD2E60BB83A}" >
-                  <!-- TODO remove [PUSHYLOCATION]\embedded\bin once CHEF-2681 is fixed -->
+                  <!-- TODO remove [PROJECTLOCATION]\embedded\bin once CHEF-2681 is fixed -->
                   <Environment Id="Environment"
-                               Name="PATH" Action="set" Part="last" System="yes" Value="[PUSHYLOCATION]bin;[PUSHYLOCATION]embedded\bin;[PUSHYLOCATION]embedded\lib\zeromq\bin" />
+                               Name="PATH" Action="set" Part="last" System="yes" Value="[PROJECTLOCATION]bin;[PROJECTLOCATION]embedded\bin;[PROJECTLOCATION]embedded\lib\zeromq\bin" />
                 </Component>
                 <Component Id="PushyClientService" Guid="{69B2D8BE-4A47-4BE3-AEE8-83FAEB6E2FAF}" >
                   <File Id="RubyExecutable" Source="$(var.ProjectSourceDir)\embedded\bin\ruby.exe" KeyPath="yes" />
                   <ServiceInstall Name="pushy-client" Type="ownProcess"
                                   Start="auto" Vital="yes" ErrorControl="ignore"
-                                  Arguments="[PUSHYLOCATION]$(var.PushJobsGemPath)\lib\pushy_client\windows_service.rb"
+                                  Arguments="[PROJECTLOCATION]$(var.PushJobsGemPath)\lib\pushy_client\windows_service.rb"
                                   DisplayName="!(loc.ServiceDisplayName)"
                                   Description="!(loc.ServiceDescription)" />
                   <ServiceControl Id="ControlPushyClientService" Name="pushy-client"
