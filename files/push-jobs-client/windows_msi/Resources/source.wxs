@@ -66,10 +66,9 @@
 
     <!-- Set the components defined in our fragment files that will be used for our feature  -->
     <Feature Id="PushyClientFeature" Title="!(loc.ProductName)" Level="1">
-      <ComponentRef Id="CONFIGLOCATIONDIR" />
-      <ComponentGroupRef Id="PushyClientDir" />
+      <ComponentGroupRef Id="ProjectDir" />
       <ComponentRef Id="PushyClientPath" />
-      <ComponentRef Id="PushyClientService" />
+      <ComponentRef Id="CONFIGLOCATIONDIR" />
     </Feature>
 
     <!--
