@@ -16,12 +16,18 @@
 #
 
 name "opscode-pushy-client-windows"
-default_version "master"
+
+dependency "libyaml-windows"
+dependency "openssl-windows"
+
+default_version "1.1.1"
 
 # TODO - use public GIT URL when repo made public
 source :git => "git@github.com:opscode/opscode-pushy-client.git"
 
 relative_path "opscode-pushy-client"
+
+always_build (self.project.name == "opscode-pushy-client-windows")
 
 build do
   gem ["install",
