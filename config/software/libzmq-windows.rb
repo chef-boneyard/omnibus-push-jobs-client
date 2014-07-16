@@ -16,17 +16,17 @@
 #
 
 name "libzmq-windows"
-default_version "2.2.0"
+default_version "4.0.4"
 
-zmq_installer = "ZeroMQ-#{version}~miru1.0-win32.exe"
+zmq_installer = "ZeroMQ-#{version}~miru1.0-x86.exe"
 
 
-source :url => "http://miru.hk/archive/ZeroMQ-#{version}~miru1.0-win32.exe",
-       :md5 => "207a322228f90f61bfb67e3f335db06e"
+source :url => "http://miru.hk/archive/ZeroMQ-#{version}~miru1.0-x86.exe",
+       :md5 => "699b63085408cd7bfcde5d3d62077f4e"
 
 build do
 
-  command "ZeroMQ-#{version}~miru1.0-win32.exe /S /D=%CD%\\zeromq", :returns => [0]
+  command "ZeroMQ-#{version}~miru1.0-x86.exe /S /D=%CD%\\zeromq", :returns => [0]
 
   # Robocopy's return code is 1 if it succesfully copies over the
   # files and 0 if the files are already existing at the destination
