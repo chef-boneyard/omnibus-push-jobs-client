@@ -55,7 +55,7 @@
                                   DisplayName="!(loc.ServiceDisplayName)"
                                   Description="!(loc.ServiceDescription)" />
                   <ServiceControl Id="ControlPushyClientService" Name="pushy-client"
-                                  Remove="both" Stop="both" Wait="yes" />
+                                  Remove="both" Start="install" Stop="both" Wait="yes" />
                 </Component>
               </Directory>
             </Directory>
@@ -69,6 +69,7 @@
       <ComponentGroupRef Id="ProjectDir" />
       <ComponentRef Id="PushyClientPath" />
       <ComponentRef Id="CONFIGLOCATIONDIR" />
+      <ComponentRef Id="PushyClientService" />
     </Feature>
 
     <!--
