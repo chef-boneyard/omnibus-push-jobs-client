@@ -69,7 +69,7 @@
       <ComponentGroupRef Id="ProjectDir" />
       <ComponentRef Id="PushyClientPath" />
       <ComponentRef Id="CONFIGLOCATIONDIR" />
-      <Component Id="PushyClientService" />
+      <ComponentRef Id="PushyClientService" />
     </Feature>
 
     <!--
