@@ -20,7 +20,7 @@ name "opscode-pushy-client-windows"
 dependency "libyaml-windows"
 dependency "openssl-windows"
 
-default_version "1.1.1"
+default_version "f0e27cbd13005e57a43ebd0b9e8577c5a6301a77"
 
 # TODO - use public GIT URL when repo made public
 source :git => "git@github.com:opscode/opscode-pushy-client.git"
