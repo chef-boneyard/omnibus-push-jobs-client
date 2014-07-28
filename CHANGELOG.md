@@ -1,5 +1,17 @@
 # Chef Push Client Changelog
 
+## 1.1.2 (2014-07-25)
+
+* Fix issue where Windows service would not be installed
+
+* Windows service is started once installed
+
+## 1.0.2 (2014-04-10)
+
+* Fix issue where Windows service would not be installed
+
+* Windows service is started once installed
+
 ## 1.0.2 (2014-04-10)
 
 ### Chef Push Client 1.0.1
