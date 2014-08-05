@@ -26,6 +26,7 @@ default_version "11.12.8"
 
 dependency "ruby"
 dependency "rubygems"
+dependency "libffi"
 dependency "yajl"
 
 build do

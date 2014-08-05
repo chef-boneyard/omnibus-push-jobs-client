@@ -23,7 +23,6 @@ install_path    "/opt/opscode-push-jobs-client"
 build_version   Omnibus::BuildVersion.new.semver
 build_iteration 1
 
-
 dependency "preparation"
 dependency "chef-gem"
 dependency "bundler"
