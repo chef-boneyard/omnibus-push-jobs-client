@@ -25,23 +25,45 @@ source url: "ftp://sourceware.org/pub/libffi/libffi-3.0.13.tar.gz",
 
 relative_path "libffi-3.0.13"
 
+configure_env =
+  case platform
+  when "aix"
+    {
+      "LDFLAGS" => "-maix64 -L#{install_dir}/embedded/lib -Wl,-blibpath:#{install_dir}/embedded/lib:/usr/lib:/lib",
+      "CFLAGS" => "-maix64 -I#{install_dir}/embedded/include",
+      "LD" => "ld -b64",
+      "OBJECT_MODE" => "64",
+      "ARFLAGS" => "-X64 cru "
+    }
+  when "mac_os_x"
+    {
+      "LDFLAGS" => "-L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
+      "CFLAGS" => "-I#{install_dir}/embedded/include -L#{install_dir}/embedded/lib"
+    }
+  when "solaris2"
+    {
+      "LDFLAGS" => "-R#{install_dir}/embedded/lib -L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
+      "CFLAGS" => "-I#{install_dir}/embedded/include -L#{install_dir}/embedded/lib -DNO_VIZ"
+    }
+  else
+    {
+      "LDFLAGS" => "-Wl,-rpath #{install_dir}/embedded/lib -L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
+      "CFLAGS" => "-I#{install_dir}/embedded/include -L#{install_dir}/embedded/lib"
+    }
+  end
+
 build do
-  env = with_standard_compiler_flags(with_embedded_path)
-
-  command "./configure" \
-          " --prefix=#{install_dir}/embedded", env: env
-
-  command "make -j #{max_build_jobs}", env: env
-  command "make -j #{max_build_jobs} install", env: env
-
-  # libffi's default install location of header files is awful...
-  copy "#{install_dir}/embedded/lib/libffi-#{version}/include/*", "#{install_dir}/embedded/include"
+  command "./configure --prefix=#{install_dir}/embedded", :env => configure_env
+  command "make -j #{max_build_jobs}"
+  command "make -j #{max_build_jobs} install"
+  # libffi's default install location of header files is aweful...
+  command "cp -f #{install_dir}/embedded/lib/libffi-3.0.13/include/* #{install_dir}/embedded/include"
 
   # On 64-bit centos, libffi libraries are places under /embedded/lib64
   # move them over to lib
   if rhel? && _64_bit?
-    move "#{install_dir}/embedded/lib64/*", "#{install_dir}/embedded/lib/"
-    delete "#{install_dir}/embedded/lib64"
+    command "mv #{install_dir}/embedded/lib64/* #{install_dir}/embedded/lib/"
+    command "rm -rf #{install_dir}/embedded/lib64"
   end
 end
 
