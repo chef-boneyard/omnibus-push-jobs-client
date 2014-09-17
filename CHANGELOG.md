@@ -1,5 +1,15 @@
 # Chef Push Client Changelog
 
+## 1.1.4 (2014-09-17)
+
+* Ensure package user/group is `root`
+* Ensure contents of install dir are owned by root
+
+## 1.1.3 (2014-08-06)
+
+* Added libffi dependency for *nix
+* Adding libffi software definition so we do not have to update to the latest omnibus
+
 ## 1.1.2 (2014-07-25)
 
 * Fix issue where Windows service would not be installed
