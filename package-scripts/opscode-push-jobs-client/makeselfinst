@@ -5,8 +5,8 @@
 
 PROGNAME=`basename $0`
 INSTALLER_DIR=`dirname $0`
-DEST_DIR=/opt/push-jobs-client
-CONFIG_DIR=/etc/push-jobs-client
+DEST_DIR=/opt/opscode-push-jobs-client
+CONFIG_DIR=/etc/opscode-push-jobs-client
 USAGE="usage: $0"
 
 error_exit()
@@ -23,5 +23,10 @@ rm -f $DEST_DIR/$PROGNAME
 
 # You may want to symlink your packages bin files into /usr/bin
 # ln -sf $DEST_DIR/bin/push-jobs-client /usr/bin || error_exit "Cannot link push-jobs-client to /usr/bin"
+
+# Ensure all files/directories in $DEST_DIR are owned by root. This
+# has been fixed on new installs but upgrades from old installs need to
+# be manually fixed.
+chown -Rh 0:0 $DEST_DIR
 
 exit 0
