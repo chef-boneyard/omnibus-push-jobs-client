@@ -1,49 +1,33 @@
 SETLOCAL
 
-:loop
-IF "%1"=="" GOTO :continue
-IF "%1"=="-p" (
-  SET omnibus_project=%2
-  SHIFT
-)
-SHIFT
-GOTO :loop
-:continue
+ECHO %OMNIBUS_PROJECT_NAME%
 
-if "%omnibus_project%"=="" (
-  ECHO Usage: build [-p PROJECT_NAME]
+if "%OMNIBUS_PROJECT_NAME%"=="" (
+  ECHO "OMNIBUS_PROJECT_NAME environment variable is not set!"
   EXIT /B 1
 )
 
-rem # These must match what is defined in the windows-dna.json
-rem # referenced below
-set BUILD_WORKSPACE=c:\opscode_pushy_build
-set OMNIBUS_RUBY_CACHE=c:\omnibus-ruby-cache-pushy
-
 IF "%CLEAN%"=="true" (
-  rmdir /Q /S %BUILD_WORKSPACE%
-  rmdir /Q /S %OMNIBUS_RUBY_CACHE%
+  rmdir /Q /S c:\opscode
+  rmdir /Q /S c:\omnibus-ruby
   rmdir /Q /S .\pkg
 )
 
-call copy /Y omnibus.rb.example.windows omnibus.rb || GOTO :error
-
-rem # we're guaranteed to have the correct ruby installed into C:\Ruby193 from chef-solo cookbooks
-rem # bundle install from here now too
 set PATH=C:\Ruby193\bin;%PATH%
-rem # ensure the installed certificate authority is loaded
 set SSL_CERT_FILE=C:\Ruby193\ssl\certs\cacert.pem
 
-rem # add dev kit to PATH
-call c:\opscode_live\chef\embedded\devkitvars.bat
-
-call bundle install || GOTO :error
+call bundle install --without development || GOTO :error
 
 IF "%RELEASE_BUILD%"=="true" (
-  call bundle exec omnibus build project %omnibus_project%-windows --no-timestamp || GOTO :error
-) else (
-  call bundle exec omnibus build project %omnibus_project%-windows || GOTO :error
+
+  call bundle exec omnibus build %OMNIBUS_PROJECT_NAME% -l debug --override append_timestamp:false || GOTO :error
+
+) ELSE (
+
+  call bundle exec omnibus build %OMNIBUS_PROJECT_NAME% -l debug || GOTO :error
+
 )
+
 GOTO :EOF
 
 :error
