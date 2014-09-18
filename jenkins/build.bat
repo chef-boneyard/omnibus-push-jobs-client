@@ -20,11 +20,11 @@ call bundle install --without development || GOTO :error
 
 IF "%RELEASE_BUILD%"=="true" (
 
-  call bundle exec omnibus build %OMNIBUS_PROJECT_NAME% -l debug --override append_timestamp:false || GOTO :error
+  call bundle exec omnibus build %OMNIBUS_PROJECT_NAME%-windows -l debug --override append_timestamp:false || GOTO :error
 
 ) ELSE (
 
-  call bundle exec omnibus build %OMNIBUS_PROJECT_NAME% -l debug || GOTO :error
+  call bundle exec omnibus build %OMNIBUS_PROJECT_NAME%-windows -l debug || GOTO :error
 
 )
 
