@@ -1,12 +1,21 @@
 source 'https://rubygems.org'
 
-# Install omnibus software
-gem 'omnibus', github: 'opscode/omnibus-ruby', :branch => 'master'
-gem 'omnibus-software', :github => 'opscode/omnibus-software',
-  :branch => 'master'
-# github: 'opscode/omnibus-software', :branch => 'master'
+gem 'omnibus', github: 'opscode/omnibus',
+               branch: '3.0-stable'
 
-# Use Test Kitchen with Vagrant for convering the build environment
-# gem 'berkshelf', '= 3.0.0.beta7'
-# gem 'test-kitchen',    '~> 1.2'
-# gem 'kitchen-vagrant', '~> 0.14'
+gem 'omnibus-software', github: 'opscode/omnibus-software',
+                        branch: 'omnibus/3.2-stable'
+
+# This development group is installed by default when you run `bundle install`,
+# but if you are using Omnibus in a CI-based infrastructure, you do not need
+# the Test Kitchen-based build lab. You can skip these unnecessary dependencies
+# by running `bundle install --without development` to speed up build times.
+group :development do
+  # Use Berkshelf for resolving cookbook dependencies
+  gem 'berkshelf', '~> 3.0'
+
+  # Use Test Kitchen with Vagrant for converging the build environment
+  gem 'test-kitchen',      '~> 1.2'
+  gem 'kitchen-vagrant',   '~> 0.15'
+  gem 'windows_chef_zero', '~> 2.0'
+end
