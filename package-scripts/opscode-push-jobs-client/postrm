@@ -1,9 +1,0 @@
-#!/bin/bash
-#
-# Perform necessary push-jobs-client removal steps
-# after package is uninstalled.
-#
-
-echo "Chef Push Client has been uninstalled!"
-
-exit 0
