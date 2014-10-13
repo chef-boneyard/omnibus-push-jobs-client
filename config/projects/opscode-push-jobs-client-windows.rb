@@ -27,6 +27,7 @@ build_iteration 1
 dependency "preparation"
 dependency "ruby-windows"
 dependency "ruby-windows-devkit"
+dependency "ruby-windows-devkit-bash"
 dependency "chef-gem-windows"
 dependency "bundler"
 dependency "libzmq-windows"
