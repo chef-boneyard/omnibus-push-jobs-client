@@ -20,7 +20,7 @@ maintainer "CHEF, Inc."
 homepage   "http://www.getchef.com"
 
 package_name    "opscode-push-jobs-client"
-install_path    "c:\\opscode_pushy_build"
+install_path    "c:\\pushy"
 build_version   Omnibus::BuildVersion.new.semver
 build_iteration 1
 
