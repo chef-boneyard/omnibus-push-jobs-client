@@ -1,5 +1,11 @@
 # Chef Push Client Changelog
 
+## 1.1.5 (2014-10-23)
+
+* Windows omnibus installer security updates for redistributed bash.exe / sh.exe
+  vulnerabilities ("Shellshock") CVE-2014-6271, CVE-2014-6277, CVE-2014-6278,
+  CVE-2014-7169, CVE-2014-7186, CVE-2014-7187.
+
 ## 1.1.4 (2014-09-17)
 
 * Ensure package user/group is `root`
